@@ -7,7 +7,7 @@ package cao.chupando.manga.domain;
 
 /**
  *
- * @author henrique
+ * @author henriqu
  */
 public class Main {
 
