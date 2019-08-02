@@ -23,6 +23,10 @@ public class Categoria {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+   public boolean equals(Object o){//Spbreescreve porque se não o equals compara a referencia.
+       Categoria aux = (Categoria) o;
+       
+       return this.nome.equals(aux.nome);
+    } 
     
 }
