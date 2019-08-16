@@ -2,6 +2,7 @@
 package controller;
 import cao.chupando.manga.domain.dao.ICategoriaDAO;
 import cao.chupando.manga.domain.dao.list.CategoriaDAOImpl;
+import cao.chupando.manga.domain.dao.postgresql.CategoriaDAOImplPostgreSQL;
 import cao.chupando.manga.domain.entidades.Categoria;
 import java.util.List;
 import javax.ws.rs.Path;
@@ -14,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/categoria")
 
 public class CategoriaController {
-    private ICategoriaDAO banco = new CategoriaDAOImpl();
+    private ICategoriaDAO banco = new CategoriaDAOImplPostgreSQL();
     
     @GET
     @Path("/")

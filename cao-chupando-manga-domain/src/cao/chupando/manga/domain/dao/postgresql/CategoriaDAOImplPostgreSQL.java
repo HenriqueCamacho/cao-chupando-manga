@@ -5,6 +5,7 @@ import cao.chupando.manga.domain.entidades.Categoria;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,21 +52,40 @@ public class CategoriaDAOImplPostgreSQL implements ICategoriaDAO{
         }
     }
 
-    @Override
     public void remover(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection con = criaConexao();
+        
+        String sql = "DELETE FROM categoria where categoria.id = "
+                + "'"+id+"'"; //Banco é necessário try catch
+        try{
+        con.createStatement().execute(sql);
+        }catch(Exception erro){
+            erro.printStackTrace();
+            }
     }
 
     @Override
     public List<Categoria> consultar() {
-         try{//É obrigado toda vez que tiver uma conexão com um banco de dados
-             List<Categoria> lista = new ArrayList<>();
-             
-             return lista;
-         }catch(Exception erro){
-             erro.printStackTrace();
+       Connection con = criaConexao();
+        
+        try{
+        List<Categoria> lista = new ArrayList<>();
+        String sql = "select * from categoria";
+        //Só atem acesso ao primeiro elemento da lista
+        ResultSet res = con.createStatement().executeQuery(sql);//Classe que retorna os dados através de uma lista encadeada
+        while(res.next()){//enquanto tiver elemento nesse cursor
+            Categoria c = new Categoria();
+            c.setId(res.getInt("id"));//Passa o nome da coluna
+            c.setNome(res.getString("nome"));
+            lista.add(c);
+            
+        }
+        
+        return lista;
+        }catch(Exception erro){
+            erro.printStackTrace();
             }
-         return null;
+        return null;
     }
     
 }
