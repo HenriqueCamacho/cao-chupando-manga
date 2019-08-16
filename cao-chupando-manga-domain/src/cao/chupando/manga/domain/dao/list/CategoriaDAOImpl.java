@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class CategoriaDAOImpl implements ICategoriaDAO{
     private static List<Categoria> categorias = new ArrayList<>();
-    private int lastId = 1;
+    private static int lastId = 1;
     
     @Override
     public void salvar(Categoria ent) {
@@ -46,6 +46,7 @@ public class CategoriaDAOImpl implements ICategoriaDAO{
             Categoria get = categorias.get(i);
             if(get.getId()== id){
                 categorias.remove(i);
+                break;
                 }
         }
     }

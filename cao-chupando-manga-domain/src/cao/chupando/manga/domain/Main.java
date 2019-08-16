@@ -7,6 +7,7 @@ package cao.chupando.manga.domain;
 
 import cao.chupando.manga.domain.dao.ICategoriaDAO;
 import cao.chupando.manga.domain.dao.list.CategoriaDAOImpl;
+import cao.chupando.manga.domain.dao.postgresql.CategoriaDAOImplPostgreSQL;
 import cao.chupando.manga.domain.entidades.Categoria;
 import java.util.Scanner;
 
@@ -17,7 +18,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-       ICategoriaDAO banco = new CategoriaDAOImpl();
+       ICategoriaDAO banco = new CategoriaDAOImplPostgreSQL();
        Scanner t = new Scanner(System.in)  ;
        int opcao = 0;
        do{     
@@ -34,7 +35,8 @@ public class Main {
                System.out.println("Cadastrando.....");
                Categoria nova = new Categoria();
                System.out.println("Digite o nome");
-               nova.setNome(t.next());
+               t.nextLine();
+               nova.setNome(t.nextLine());
                try{
                banco.salvar(nova);
                System.out.println("Inserido com Sucesso!");
